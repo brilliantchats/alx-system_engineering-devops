@@ -1,2 +1,2 @@
 #!/bin/bash
-mv ^[[:upper:]][[alphanum]]* /tmp/u
+mv "^[[:upper:]][[alphanum]]*" /tmp/u
