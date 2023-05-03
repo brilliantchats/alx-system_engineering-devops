@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Takes a file and copies it to remote server using scp and ssh
 if [ $# -eq 4 ] ; then
 scp -i "$4" "$1" "$3"@"$2":~/
 else
