@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Install nginx on server, change default landing page, implement redirection
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo chown -R "$USER":"$USER" /var/www
+echo "Hello World!" > '/var/www/html/index.html'
+redirect="rewrite ^/replace_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "/^\tserver/a $redirect" /etc/nginx/sites-available/default
+sudo nginx -s reload
