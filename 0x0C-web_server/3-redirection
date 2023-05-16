@@ -4,8 +4,7 @@ apt-get update
 apt-get -y install nginx
 chown -R "$USER":"$USER" /var/www
 echo "Hello World!" > '/var/www/html/index.nginx-debian.html'
+sudo sed -i '/^\W*#.*/d' /etc/nginx/sites-available/default
+redirect="location = /redirect_me {\n\t\trewrite ^/replace_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}\n"
+sed -i "s@location@${redirect}\r\n\tlocation@" /etc/nginx/sites-available/default
 service nginx restart
-redirect="	location = /redirect_me {\n		rewrite ^/replace_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n	}"
-match="	server_*"
-sed -i "/$match/a $redirect" /etc/nginx/sites-available/default
-sudo nginx -s reload
