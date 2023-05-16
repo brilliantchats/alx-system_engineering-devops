@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Install nginx on server and change default landing page
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo chown -R "$USER":"$USER" /var/www
+echo "Hello World!" > '/var/www/html/index.nginx-debian.html'
+sudo sed -i '/^\W*#.*/d' /etc/nginx/sites-available/default
+replace="add_header X-Served-By ${HOSTNAME};"
+sudo sed -i "s@try_files@${replace}\n\t\ttry_files@" /etc/nginx/sites-available/default
+sudo service nginx restart
