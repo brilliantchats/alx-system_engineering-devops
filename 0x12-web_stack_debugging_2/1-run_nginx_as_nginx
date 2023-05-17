@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Change config so that Nginx is run by the user nginx
+sudo apt-get update
+sudo apt-get -y install acl
+sudo apt-get -y install psmisc
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+sudo setfacl -R -m u:nginx:rwx /var/log/nginx
+sudo setfacl -m u:nginx:rwx /run
+sudo chown -R nginx:nginx /usr/share/nginx/
+sudo service nginx start
