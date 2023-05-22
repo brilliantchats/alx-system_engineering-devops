@@ -3,8 +3,8 @@
 Using urllib.request to interact with a REST API hosted remotely
 """
 import json
-from urllib.request import urlopen
 import sys
+from urllib.request import urlopen
 
 
 def main():
