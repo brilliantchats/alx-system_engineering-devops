@@ -8,7 +8,8 @@ import requests
 def top_ten(subreddit):
     """Use requests to get the top hot posts of a subreddit"""
     url = 'https://www.reddit.com/r/{}/top.json?limit=10'.format(subreddit)
-    response = requests.get(url, headers={'User-Agent': 'Custom User'})
+    response = requests.get(url, headers={'User-Agent': 'Custom User'},
+                            allow_redirects=False)
     if response.status_code == 200:
         """
         Get the dictionary with the key data which contains a list - children
