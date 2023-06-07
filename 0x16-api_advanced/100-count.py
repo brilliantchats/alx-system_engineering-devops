@@ -45,15 +45,17 @@ def count_words(subreddit, word_list):
     if articles is None:
         return ""
     word_count = dict()
-    for word in word_list:
+    word_list_lower = [word.lower() for word in word_list]
+    for word in word_list_lower:
         count = 0
         for article in articles:
-            count += article.upper().count(word.upper())
-        if word.lower() in word_count:
-            word_count[word.lower()] = word_count[word.lower()] + count
+            count += article.lower().count(word)
+        if word in word_count.keys():
+            word_count[word] = word_count[word] + count
         else:
             word_count[word] = count
     sorted_word_count = dict(sorted(word_count.items(),
                              key=operator.itemgetter(1), reverse=True))
     for key, value in sorted_word_count.items():
-        print('{}: {}'.format(key, value))
+        if value > 0:
+            print('{}: {}'.format(key, value))
