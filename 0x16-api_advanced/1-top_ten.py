@@ -20,4 +20,4 @@ def top_ten(subreddit):
         for item in children_list:
             print(item.get('data')['title'])
     else:
-        return print(None)
+        print(None)
