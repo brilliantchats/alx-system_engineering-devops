@@ -11,7 +11,7 @@ Duration of outage 1200hrs — 1230hrs CAT. Web app was down and not serving any
 1225hrs- Corrected the typo using a puppet manifest.
 1230hrs- Web app back up and all services working.
 
-##Root Cause and Resolution
+## Root Cause and Resolution
 The issue was essentially caused by a typo in one of the Wordpress configuration files. There are two wordpress config files namely wp-config.php and wp-settings.php. On the strace there was an error of no such file or directory of the file class-wp-locale.phpp. Research of the wordpress docs showed that class-wp-locale.php is one of a number of files used to load the L10n library which is essential in building the frontend. The file is a php file and in our web app the extension was incorrectly typed in as phpp insted of php. The issue was solved by editing the wp-settings.php file by using the streamline editor, sed. The code for this was put in a puppet manifest and voila the issue was resolved.
 
 ## Corrective and Preventative measures
