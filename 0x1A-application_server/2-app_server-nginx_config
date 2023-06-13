@@ -1,0 +1,10 @@
+# Set up a server block for reverse proxy
+server {
+    listen 80;
+    server_name 54.164.3.63;
+
+    location /airbnb-onepage/ {  
+        include proxy_params;
+        proxy_pass http://localhost:5000/airbnb-onepage/;
+    }
+}
